@@ -83,6 +83,6 @@ curl -X POST http://localhost:3000/api/meetings/MEETING_ID/analyze \
 \`\`\`
 
 ## Live URLs
-- **API**: https://your-deployed-url.com
-- **Swagger Docs**: https://your-deployed-url.com/api-docs
-- **Health**: https://your-deployed-url.com/health
+- **API**: https://hintro-backend.onrender.com/
+- **Swagger Docs**: https://hintro-backend.onrender.com/api-docs/
+- **Health**: https://hintro-backend.onrender.com/health
