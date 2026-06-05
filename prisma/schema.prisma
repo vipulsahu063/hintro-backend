@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  meetings  Meeting[]
+}
+
+model Meeting {
+  id           String       @id @default(uuid())
+  title        String
+  participants String[]
+  meetingDate  DateTime
+  transcript   Json
+  analysis     Json?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  userId       String
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  actionItems  ActionItem[]
+}
+
+model ActionItem {
+  id           String            @id @default(uuid())
+  task         String
+  assignee     String
+  status       String            @default("PENDING")
+  dueDate      DateTime?
+  citations    Json?
+  meetingId    String
+  meeting      Meeting           @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  reminders    ReminderHistory[]
+}
+
+model ReminderHistory {
+  id           String     @id @default(uuid())
+  actionItemId String
+  actionItem   ActionItem @relation(fields: [actionItemId], references: [id], onDelete: Cascade)
+  sentAt       DateTime   @default(now())
+  channel      String     @default("discord")
+  message      String
+}
