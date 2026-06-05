@@ -34,10 +34,10 @@ app.get('/health', (req, res) => {
 // Evaluation endpoint
 app.get('/api/evaluation', (req, res) => {
   res.json({
-    candidateName: 'Your Name Here',
-    email: 'your@email.com',
-    repositoryUrl: 'https://github.com/yourusername/hintro-backend',
-    deployedUrl: process.env.DEPLOYED_URL || 'https://your-deployed-url.com',
+    candidateName: 'Vipul Sahu',
+    email: 'vipulsahu063@gmail.com',
+    repositoryUrl: 'https://github.com/vipulsahu063/hintro-backend',
+    deployedUrl: process.env.DEPLOYED_URL || 'https://hintro-backend.onrender.com/',
     externalIntegration: 'Discord Webhook',
     features: [
       'JWT Authentication',
